@@ -1,0 +1,32 @@
+{
+  "name": "pwa-practices",
+  "version": "1.0.0",
+  "description": "progressive web app practices, weather in china",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charleserious/PWA-practices.git"
+  },
+  "keywords": [
+    "PWA",
+    "Weather",
+    "in",
+    "China",
+    "PWA"
+  ],
+  "author": "Charleserious",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/charleserious/PWA-practices/issues"
+  },
+  "homepage": "https://github.com/charleserious/PWA-practices#readme",
+  "dependencies": {
+    "eslint": "^4.18.1"
+  },
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1"
+  }
+}
