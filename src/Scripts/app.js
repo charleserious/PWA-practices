@@ -22,10 +22,12 @@
 
     document.getElementById('btnAddCity').addEventListener('click', function () {
         var select = document.getElementById('selectCityToAdd');
-        var selected = select.option[select.selectedIndex];
+        var selected = select.options[select.selectedIndex];
         var key = selected.value;
         var label = selected.textContent;
-        app.getForecasts(key, label);
+        app.getForecast(key, label);
+        app.selectedCities.push({key: key, label: label});
+        app.saveSelectedCities();
         app.toggleAddDialog(false);
     });
 
@@ -35,9 +37,9 @@
 
     app.toggleAddDialog = function (visible) {
         if (visible) {
-            app.addDialog.classList.add('dialog-container-visible');
+            app.addDialog.classList.add('dialog-container--visible');
         } else {
-            app.addDialog.classList.remove('dialog-container-visible');
+            app.addDialog.classList.remove('dialog-container--visible');
         }
     };
 
@@ -125,6 +127,11 @@
         keys.forEach(function (key) {
             app.getForecast(key);
         });
+    };
+
+    app.saveSelectedCities = function () {
+        var selectedCities = JSON.stringify(app.selectedCities);
+        localStorage.selectedCities = selectedCities;
     };
 
     app.getIconClass = function (weatherCode) {
@@ -225,5 +232,18 @@
             }
         }
     };
-    app.updateForecastCard(initialWeatherForecast);
+    // app.updateForecastCard(initialWeatherForecast);
+    app.selectedCities = localStorage.selectedCities;
+    if (app.selectedCities) {
+        app.selectedCities = JSON.parse(app.selectedCities);
+        app.selectedCities.forEach(function (city) {
+            app.getForecast(city.key, city.label);
+        });
+    } else {
+        app.updateForecastCard(initialWeatherForecast);
+        app.selectedCities = [
+            {key: initialWeatherForecast.key, label: initialWeatherForecast.label}
+        ];
+        app.saveSelectedCities();
+    }
 })();
