@@ -60,10 +60,10 @@
         }
 
         var cardLastUpdatedElement = card.querySelector('.card-last-updated');
-        var cartLastUpdated = cardLastUpdatedElement.textContent;
-        if (cartLastUpdated) {
-            dataLastUpdated = new Date(cartLastUpdated);
-            if (dataLastUpdated.getTime() < cartLastUpdated.getTime()) {
+        var cardLastUpdated = cardLastUpdatedElement.textContent;
+        if (cardLastUpdated) {
+            cardLastUpdated = new Date(cardLastUpdated);
+            if (dataLastUpdated.getTime() < cardLastUpdated.getTime()) {
                 return undefined;
             }
         }
@@ -110,10 +110,10 @@
                     results.key = key;
                     results.label = label;
                     results.created = response.query.created;
-                    app.updateForecastsCard(results);
+                    app.updateForecastCard(results);
                 }
             } else {
-                app.updateForecastsCard(initialWeatherForecast);
+                app.updateForecastCard(initialWeatherForecast);
             }
         };
         request.open('GET', url);
