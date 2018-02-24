@@ -246,4 +246,12 @@
         ];
         app.saveSelectedCities();
     }
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('./Scripts/service-worker.js')
+            .then(function () {
+                console.log('Service Worker Registered');
+            });
+    }
 })();
